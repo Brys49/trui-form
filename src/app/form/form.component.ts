@@ -8,6 +8,9 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 })
 export class FormComponent implements OnInit {
   formGroup!: FormGroup;
+  floatLabelControl = new FormControl('always');
+
+  checkedControl = new FormControl(false);
 
   constructor(
     private formBuilder: FormBuilder
@@ -30,11 +33,14 @@ export class FormComponent implements OnInit {
       'driving-licence': [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       'subject': [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       'textarea': [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      floatLabel: this.floatLabelControl,
+      checked: this.checkedControl,
     });
   }
 
   onSubmit(post: any) {
     console.log(post);
   }
+  
 
 }
