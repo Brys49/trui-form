@@ -2,18 +2,93 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '~@angular/material' as mat;
-// Plus imports for other components in your app.
+@import '~@angular/material/theming';
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat.core();
+// Be sure that you only ever include 'mat-core' mixin once!
+// it should not be included for each theme.
+@include mat-core(); 
 
+/* For use in src/lib/core/theming/_palette.scss */
+$md-primary: (
+    50 : #fdede3,
+    100 : #fbd1b8,
+    200 : #f9b289,
+    300 : #f6935a,
+    400 : #f47c36,
+    500 : #f26513,
+    600 : #f05d11,
+    700 : #ee530e,
+    800 : #ec490b,
+    900 : #e83706,
+    A100 : #ffffff,
+    A200 : #ffe3dd,
+    A400 : #ffb9aa,
+    A700 : #ffa391,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$md-accent: (
+    50 : #e8fae9,
+    100 : #c5f4c8,
+    200 : #9eeca3,
+    300 : #77e47e,
+    400 : #5adf63,
+    500 : #3dd947,
+    600 : #37d540,
+    700 : #2fcf37,
+    800 : #27ca2f,
+    900 : #1ac020,
+    A100 : #f5fff5,
+    A200 : #c2ffc4,
+    A400 : #8fff92,
+    A700 : #75ff79,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+// mandatory stuff for theming
+$bv-palette-primary: mat-palette($md-primary);
+$bv-palette-accent:  mat-palette($md-accent);
+
+// include the custom theme components into a theme object
+$bv-theme: mat-light-theme($bv-palette-primary, $bv-palette-accent);
+
+// include the custom theme object into the angular material theme
+@include angular-material-theme($bv-theme);
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$trui-form-primary: mat.define-palette(mat.$indigo-palette);
-$trui-form-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$trui-form-primary: mat.define-palette($md-primary);
+$trui-form-accent: mat.define-palette($md-primary, 600, 700, 800);
 
 // The warn palette is optional (defaults to red).
 $trui-form-warn: mat.define-palette(mat.$red-palette);
@@ -36,3 +111,5 @@ $trui-form-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
