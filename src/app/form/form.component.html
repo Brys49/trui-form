@@ -51,17 +51,17 @@
 
       <div class="form-checkboxes">
         <mat-checkbox class="form-checkboxes-select-all"
-          [checked]="this.formGroup.get('option1')?.value && this.formGroup.get('option2')?.value"
+          [checked]="this.formGroup.get('dataProcessingAgreement')?.value && this.formGroup.get('marketingContactAgreement')?.value"
           (change)="checkAll()">
           Zaznacz wszystkie zgody
         </mat-checkbox>
 
-        <mat-checkbox formControlName="option1" [checked]="this.formGroup.get('option1')?.value">
+        <mat-checkbox formControlName="dataProcessingAgreement" [checked]="this.formGroup.get('dataProcessingAgreement')?.value">
           Wyrażam zgodę na przetwarzanie moich danych osobowych podanych przeze mnie w powyższym formularzu w celu
           kontaktowym.
         </mat-checkbox>
 
-        <mat-checkbox formControlName="option2" [checked]="this.formGroup.get('option2')?.value">
+        <mat-checkbox formControlName="marketingContactAgreement" [checked]="this.formGroup.get('marketingContactAgreement')?.value">
           Wyrażam zgodę na kontakt telefoniczny w sprawach marketingowych.
         </mat-checkbox>
       </div>

@@ -17,8 +17,8 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
-    this.formGroup.get('option1')?.valueChanges.subscribe(next => { this.allChecked = next && this.formGroup.get('option2')?.value });
-    this.formGroup.get('option2')?.valueChanges.subscribe(next => { this.allChecked = next && this.formGroup.get('option1')?.value });
+    this.formGroup.get('dataProcessingAgreement')?.valueChanges.subscribe(next => { this.allChecked = next && this.formGroup.get('marketingContactAgreement')?.value });
+    this.formGroup.get('marketingContactAgreement')?.valueChanges.subscribe(next => { this.allChecked = next && this.formGroup.get('dataProcessingAgreement')?.value });
   }
 
   createForm() {
@@ -30,8 +30,8 @@ export class FormComponent implements OnInit {
       'subject': [null, [Validators.required]],
       'drivingLicence': ["false", [Validators.required]],
       'textarea': [null, [Validators.minLength(1), Validators.maxLength(300)]],
-      'option1': [false, [Validators.requiredTrue]],
-      'option2': [false],
+      'dataProcessingAgreement': [false, [Validators.requiredTrue]],
+      'marketingContactAgreement': [false],
       floatLabel: this.floatLabelControl,
     });
   }
@@ -45,8 +45,8 @@ export class FormComponent implements OnInit {
       "\n Temat: " + post.subject +
       "\n Czy posiadasz prawo jazdy kat.B?: " + post.drivingLicence +
       "\n Treść wiadomości: " + post.textarea +
-      "\n Zgoda 1: " + post.option1 +
-      "\n Zgoda 2: " + post.option2
+      "\n Zgoda 1: " + post.dataProcessingAgreement +
+      "\n Zgoda 2: " + post.marketingContactAgreement
     );
   }
 
@@ -54,11 +54,11 @@ export class FormComponent implements OnInit {
     this.allChecked = !this.allChecked;
 
     if (this.allChecked == true) {
-      this.formGroup.get('option1')?.setValue(true);
-      this.formGroup.get('option2')?.setValue(true);
+      this.formGroup.get('dataProcessingAgreement')?.setValue(true);
+      this.formGroup.get('marketingContactAgreement')?.setValue(true);
     } else {
-      this.formGroup.get('option1')?.setValue(false);
-      this.formGroup.get('option2')?.setValue(false);
+      this.formGroup.get('dataProcessingAgreement')?.setValue(false);
+      this.formGroup.get('marketingContactAgreement')?.setValue(false);
     }
   }
 
