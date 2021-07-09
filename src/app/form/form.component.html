@@ -1,0 +1,76 @@
+<div class="form-window">
+  <h1 class="form-window-element">Wypełnij formularz</h1>
+  <h4 class="form-window-element">Skontaktujemy się z Tobą najszybciej jak to będzie możliwe.</h4>
+  <div class="form-container form-window-element">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+
+      <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value" class="form-field">
+        <mat-label>Nazwa firmy / Imię i nazwisko</mat-label>
+        <input matInput #input id="matInput" formControlName="name" placeholder="np. Apple" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value" class="form-field">
+        <mat-label>Numer NIP</mat-label>
+        <input matInput #input id="matInput" formControlName="nip" placeholder="123-45-67-890" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value" class="form-field">
+        <mat-label>E-mail</mat-label>
+        <input matInput #input id="matInput" formControlName="email" placeholder="example@email.com" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value" class="form-field">
+        <mat-label>Numer telefonu</mat-label>
+        <input matInput #input id="matInput" formControlName="phone" placeholder="123 456 789">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value" class="form-field">
+        <mat-label>Temat</mat-label>
+        <mat-select formControlName="subject" required>
+          <mat-option value="Wspolpraca">
+            Współpraca
+          </mat-option>
+          <mat-option value="Inne">
+            Inne
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="form-radio-group">
+        <mat-label>Czy posiadasz prawo jazdy kat.B?</mat-label>
+        <mat-radio-group formControlName="drivingLicence" aria-label="Czy posiadasz prawo jazdy kat.B?">
+          <mat-radio-button value="true">Tak</mat-radio-button>
+          <mat-radio-button value="false" [checked]="true">Nie</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value" class="form-field">
+        <mat-label>Treść wiadomości</mat-label>
+        <textarea matInput formControlName="textarea" placeholder="Dzień dobry," rows="6"></textarea>
+      </mat-form-field>
+
+      <div class="form-checkboxes">
+        <mat-checkbox class="form-checkboxes-select-all"
+          [checked]="this.formGroup.get('option1')?.value && this.formGroup.get('option2')?.value"
+          (change)="checkAll()">
+          Zaznacz wszystkie zgody
+        </mat-checkbox>
+
+        <mat-checkbox formControlName="option1" [checked]="this.formGroup.get('option1')?.value">
+          Wyrażam zgodę na przetwarzanie moich danych osobowych podanych przeze mnie w powyższym formularzu w celu
+          kontaktowym.
+        </mat-checkbox>
+
+        <mat-checkbox formControlName="option2" [checked]="this.formGroup.get('option2')?.value">
+          Wyrażam zgodę na kontakt telefoniczny w sprawach marketingowych.
+        </mat-checkbox>
+      </div>
+
+      <div class="form-field">
+        <button mat-button class="submit-button" id="mat-button" type="submit" [disabled]="!formGroup.valid">
+          Wyślij wiadomość
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
